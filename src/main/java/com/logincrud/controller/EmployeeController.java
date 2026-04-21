@@ -50,5 +50,9 @@ public class EmployeeController {
         employeeService.importFromCsv(file);
         return ResponseEntity.ok("Imported successfully");
     }
+    @PostMapping
+    public ResponseEntity<EmployeeResponseDTO> add(@Valid @RequestBody EmployeeRequestDTO dto) {
+        return ResponseEntity.ok(employeeService.create(dto));
+    }
 
 }
