@@ -7,6 +7,7 @@ import com.logincrud.model.Employee;
 import com.logincrud.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -42,8 +43,15 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Page<EmployeeResponseDTO> getAll(Pageable pageable) {
-        return employeeRepository.findAll(pageable)
-                .map(employeeMapper::toResponse);
+        Page<Long> idPage = employeeRepository.findAllIds(pageable);
+
+        List<Employee> employees = employeeRepository.findAllWithTasksByIds(idPage.getContent());
+
+        List<EmployeeResponseDTO> dtos = employees.stream()
+                .map(employeeMapper::toResponse)
+                .toList();
+
+        return new PageImpl<>(dtos, pageable, idPage.getTotalElements());
     }
 
     @Override
