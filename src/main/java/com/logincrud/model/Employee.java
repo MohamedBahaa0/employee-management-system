@@ -15,7 +15,7 @@ public class Employee {
     private String name;
     private String email;
     private int age;
-    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "employee",cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<Task> tasks = new ArrayList<>();
     public void addTask(Task task) {
         tasks.add(task);
