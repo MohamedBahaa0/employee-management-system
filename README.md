@@ -1,4 +1,4 @@
-# Login CRUD - Employee Management System
+# Employee Management System
 
 A Spring Boot REST API application for managing employees and their tasks with authentication and authorization support.
 
@@ -74,10 +74,11 @@ src/main/resources/
 
 ## Installation & Setup
 
-### 1. Clone or Download the Project
+### 1. Clone the Project
 
 ```bash
-cd Desktop/Java/GettingStarted/logincrud
+git clone https://github.com/MohamedBahaa0/employee-management-system.git
+cd employee-management-system
 ```
 
 ### 2. Configure Database Connection
